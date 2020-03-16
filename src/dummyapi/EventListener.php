@@ -15,8 +15,6 @@ class EventListener implements Listener
 {
 
     public function onJoin(PlayerJoinEvent $event){
-        Dummy::create(UUID::fromRandom(), $event->getPlayer(), $event->getPlayer()->getSkin());
-
         foreach(DummyAPI::getInstance()->getAllDummy() as $dummy){
             $dummy->spawnTo($event->getPlayer());
         }
