@@ -64,6 +64,10 @@ class Dummy extends Location
         $this->despawn();
     }
 
+    public function close(){
+        DummyAPI::getInstance()->unregisterDummy($this);
+    }
+
     public function onUpdate(int $currentTick){
 
     }
