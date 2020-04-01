@@ -14,12 +14,20 @@ use pocketmine\utils\UUID;
 class EventListener implements Listener
 {
 
+    /**
+     * @priority LOWEST
+     * @param PlayerJoinEvent $event
+     */
     public function onJoin(PlayerJoinEvent $event){
         foreach(DummyAPI::getInstance()->getAllDummy() as $dummy){
             $dummy->spawnTo($event->getPlayer());
         }
     }
 
+    /**
+     * @priority LOWEST
+     * @param EntityLevelChangeEvent $event
+     */
     public function onLevelChange(EntityLevelChangeEvent $event){
         if($event->getEntity() instanceof Player){
             foreach(DummyAPI::getInstance()->getAllDummy() as $dummy){
@@ -32,6 +40,10 @@ class EventListener implements Listener
         }
     }
 
+    /**
+     * @priority LOWEST
+     * @param DataPacketReceiveEvent $event
+     */
     public function onPacketReceive(DataPacketReceiveEvent $event){
         $pk = $event->getPacket();
         if($pk instanceof InventoryTransactionPacket){

@@ -124,7 +124,6 @@ class Dummy extends Location
         $pk = new AddPlayerPacket();
         $pk->uuid = $this->uuid;
         $pk->username = $this->name;
-        $pk->entityUniqueId = $this->eid;
         $pk->entityRuntimeId = $this->eid;
         $pk->position = $this;
         $pk->yaw = $this->yaw;
@@ -136,7 +135,7 @@ class Dummy extends Location
 
         $pk = new PlayerListPacket();
         $pk->type = PlayerListPacket::TYPE_REMOVE;
-        $pk->entries = [$entry];
+        $pk->entries = [PlayerListEntry::createRemovalEntry($this->uuid)];
         $player->dataPacket($pk);
     }
 
